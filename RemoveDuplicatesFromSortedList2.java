@@ -27,7 +27,7 @@ public class Solution {
 		} else {
 			if(head.next == null) {
 			return null;
-		}
+			}
 		return deleteDuplicates(head.next);
 		}	
 	}

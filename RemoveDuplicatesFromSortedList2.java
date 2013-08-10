@@ -17,7 +17,7 @@ public class Solution {
 		
 		boolean flag = true; 
 		while(head.next != null) {
-			if(head.next.val == head.val) flag =false;
+			if(head.next.val == head.val)  flag = false;
 				else break;
 				head.next = head.next.next;		
 		}

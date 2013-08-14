@@ -1,5 +1,9 @@
 /**
+<<<<<<< HEAD
 Jump Game
+=======
+Jump Game 
+>>>>>>> a2d7bcbc3dbcb5b45a163bca33c26f40290db5d3
 Given an array of non-negative integers, you are initially positioned at the first index of the array.
 
 Each element in the array represents your maximum jump length at that position.

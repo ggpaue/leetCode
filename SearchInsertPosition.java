@@ -23,11 +23,11 @@ public class Solution {
 		for(int i=0; i<A.length; i++) {
 			if(A[i] == target) {
 				index = i;
-                break;
+                		break;
 			}
 			if(A[i] < target && A[i+1] > target) {
 				index = i+1;
-                break;
+                		break;
 			}
 			
 		}

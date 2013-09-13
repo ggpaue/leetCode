@@ -20,7 +20,6 @@ public class Solution {
 		array[0] = 1;
 		for(int i = 0; i < digits.length; i++) {
 			array[i+1] = digits[i];
-		
 		}
 		return array;
 	}

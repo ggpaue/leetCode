@@ -31,61 +31,46 @@ public class Solution {
     public ArrayList<ArrayList<String>> findLadders(String start, String end, HashSet<String> dict) {
         // Start typing your Java solution below
         // DO NOT write main() function
-        ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
-        int currentLevel = 1;
-        int nextLevel = 0;
+    	HashSet<String> visited = new HashSet<String>();
+        LinkedList<ArrayList<String>> resultList = new LinkedList<ArrayList<String>>();
+        ArrayList<String> temp = new ArrayList<String>();
         boolean found = false;
-        HashSet<String> visited = new HashSet<String>();
         
-        Queue<String> q = new LinkedList<String>();
-        q.add(start);
-        Queue<ArrayList<String>> sequences = new LinkedList<ArrayList<String>>();
-        ArrayList<String> l = new ArrayList<String>();
-        l.add(start);
-        sequences.add(l);
+        temp.add(start);
+        resultList.add(temp);
         
-        while(!q.isEmpty()) {
-            String st = q.remove();
-            ArrayList<String> temp = sequences.remove();
-            currentLevel--;
-            if(st.equals(end)) {
-                result.add(temp);
-                found = true;
-            } else {
-                if(!found) {
-                    for(int i = 0; i < st.length(); i++) {
-                        StringBuffer sb = new StringBuffer(st);
-                        for(int j = 0; j < 26; j++) {
-                            sb.setCharAt(i, (char)('a' + j));
-                            String next = sb.toString();
-                            boolean in = false;
-                            for(int g = 0; j < temp.size(); g++) {
-                                if(temp.get(g).equals(next)) {
-                                    in = true;
-                                    break;
-                                }
-                            }
-                            if(dict.contains(next) && !in) {
-                                q.add(next);
-                                visited.add(next);
-                                nextLevel++;
-                                ArrayList<String> nexttemp = new ArrayList<String>(temp);
-                                nexttemp.add(next);
-                                sequences.add(nexttemp);
-                            }
-                        }
-                    }
-                }
+        while(!resultList.isEmpty()) {
+            for(int i = 0; i < resultList.size(); i++) {
+            	ArrayList<String> list = resultList.pollFirst();
+            	String from = list.get(list.size() - 1);
+            	visited.add(from);
+            	char[] array = from.toCharArray();
+            	for(int j = 0; j < array.length; j++) {
+            		char base = array[j];
+            		for(char c = 'a'; c < 'z'; c++) {
+            			if(c == base) continue;
+            			array[j] = c;
+            			String s = new String(array);
+            			if(dict.contains(s) && !visited.contains(s)) {
+            				if(s.equals(end)) found = true;
+            				ArrayList<String> newList = new ArrayList<String>(list);
+            				newList.add(s);
+            				resultList.add(newList);
+            			}
+            		}
+            		array[j] = base;
+            	}
             }
-            if(currentLevel == 0) {
-                if(found) {
-                    break;
-                } else {
-                    currentLevel = nextLevel;
-                    nextLevel = 0;
-                }
+            
+            if(found) {
+            	ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
+            	for(ArrayList<String> list : resultList) {
+            		if(list.get(list.size() - 1).equals(end)) result.add(list);
+            	}
+            	return result;
             }
+          
         }
-        return result;
+        return new ArrayList<ArrayList<String>>();
     }
 }

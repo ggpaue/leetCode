@@ -30,9 +30,7 @@ class Solution(object):
         right = len(nums) - 1
         while left <= right:
             mid = (left + right) // 2
-            #print(mid)
             if nums[mid] == target:
-                print(mid)
                 return mid
             # left part is sorted
             elif nums[mid] >= nums[left]:

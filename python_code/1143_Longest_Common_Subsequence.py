@@ -32,22 +32,16 @@ class Solution:
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
         text1 = ' ' + text1
         text2 = ' ' + text2
-        print(text1)
-        print(text2)
 
         dp = [[0 for i in range(len(text2))] for j in range(len(text1)) ]
-        print(dp)
-        tmp = 0
+
         for i in range(1, len(text1)):
             for j in range(1, len(text2)):
-                tmp += 1
                 if text1[i] == text2[j]:
                     dp[i][j] = dp[i-1][j-1] + 1
-                    print(tmp, dp)
                 else:
                     dp[i][j] = max(dp[i-1][j], dp[i][j-1])
-                    print(tmp, dp)
-        print(dp[-1][-1])
+
         return dp[-1][-1]
 
 s = Solution()

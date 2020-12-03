@@ -49,12 +49,14 @@ class Solution:
 
             if j == len(p):
                 return i == len(s)
-
+            # check fist character match
             first = i < len(s) and p[j] in {s[i], '.'}
             if j <= len(p) - 2 and p[j+1] == '*':
+                # * appears in p
                 # match 0 time or match 1 time and continue the match process
                 ans = dp(i, j+2) or first and dp(i+1, j)
             else:
+                # no * and continue the character match
                 ans = first and dp(i+1, j+1)
             memo[(i, j)] = ans
             return ans

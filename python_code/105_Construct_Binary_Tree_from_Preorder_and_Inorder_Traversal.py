@@ -45,3 +45,7 @@ class Solution:
         root.right = self.build(preorder, preStart+leftSize+1, preEnd, inorder, index+1, inEnd)
 
         return root
+
+preorder = [3,9,20,15,7]
+inorder = [9,3,15,20,7]
+s = Solution()

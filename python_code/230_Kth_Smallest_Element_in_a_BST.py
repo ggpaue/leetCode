@@ -49,3 +49,11 @@ class Solution:
             else:
                 break
         return None
+
+        '''
+        def traverse(root: TreeNode):
+            return traverse(root.left)  + [root.val] + traverse(root.right) if root else []
+        return traverse(root)[k-1]
+        '''
+
+

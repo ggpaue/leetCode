@@ -40,7 +40,7 @@ class Solution:
             return hours <= H
 
         low, high = 1, max(piles)
-        while low > high:
+        while low < high:
             mid = low + (high - low)//2
             if not possible(mid):
                 low = mid + 1

@@ -37,44 +37,44 @@ class RandomizedSet:
         """
         Initialize your data structure here.
         """
-        self.direct = {}
-        self.revert = {}
-        self.count = 0
+        self.data_map = {}
+        self.data = []
 
     def insert(self, val: int) -> bool:
         """
         Inserts a value to the set. Returns true if the set did not already contain the specified element.
         """
-        if val in self.revert:
+        if val in self.data_map:
             return False
-        else:
-            self.revert[val] = self.count
-            self.direct[self.count] = val
-            self.count += 1
-            return True
+
+        self.data_map[val] = len(self.data)
+        self.data.append(val)
+        return True
 
     def remove(self, val: int) -> bool:
         """
         Removes a value from the set. Returns true if the set contained the specified element.
         """
-        if val not in self.revert:
+        if val not in self.data_map:
             return False
-        else:
-            index = self.revert.pop(val)
-            self.direct.pop(index)
-            if index != self.count-1:
-                self.direct[index] = self.direct[self.count-1]
-                self.revert[self.direct[index]] = index
-                self.direct.pop(self.count-1)
-            self.count -= 1
-            return True
+
+        last_ele = self.data[-1]
+        index = self.data_map[val]
+
+        self.data_map[last_ele] = index
+        self.data[index] = last_ele
+
+        self.data.pop()
+        self.data_map.pop(val)
+        return True
 
     def getRandom(self) -> int:
         """
         Get a random element from the set.
         """
-        index = math.floor(random.random()*self.count)
-        return self.direct[index]
+        return random.choice(self.data)
+
+
 
 # Your RandomizedSet object will be instantiated and called as such:
 # obj = RandomizedSet()

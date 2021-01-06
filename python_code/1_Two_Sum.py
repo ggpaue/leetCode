@@ -18,13 +18,11 @@ class Solution(object):
         """
         tmp = {}
         res = []
-        i = 0
         for i in range(len(nums)):
             if target - nums[i] in tmp:
                 res = [tmp.get(target - nums[i]), i]
                 break
             tmp[nums[i]] = i
-            i += 1
         return res
 
 

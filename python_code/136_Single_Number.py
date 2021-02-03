@@ -22,7 +22,7 @@ class Solution(object):
         res = nums[0]
         for n in nums[1:]:
             res ^= n
-        print(res)
+            print(res)
         return res
 
 s = Solution()

@@ -26,5 +26,17 @@
 #1 <= nums.length <= 2 * 104
 #-109 <= nums[i] <= 109
 
+from typing import List
 class Solution:
     def findLHS(self, nums: List[int]) -> int:
+        tmp = {}
+        res = 0
+        for num in nums:
+            if num in tmp:
+                tmp[num] += 1
+            else:
+                tmp[num] = 1
+        for n in nums:
+            if n+1 in tmp.keys():
+                res = max(res, tmp[n]+tmp[n+1])
+        return res

@@ -22,7 +22,12 @@
 from typing import List
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        if len(grid) < 1:
+        '''
+
+        :param grid:
+        :return:
+
+                 if len(grid) < 1:
             return 0
 
         row = len(grid)
@@ -45,8 +50,30 @@ class Solution:
                 if grid[i][j] == '1':
                     res += 1
                     dfs(i, j)
-        print(res)
         return res
+        '''
+
+        res = 0
+        visited = set()
+        row = len(grid)
+        col = len(grid[0])
+
+        def dfs(r, c):
+            if (r not in range(row)) or (c not in range(col)) or grid[r][c] == '0' or (r, c) in visited:
+                return
+
+            visited.add((r, c))
+            directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+            for dr, dc in directions:
+                dfs(r+dr, c+dc)
+
+        for i in range(row):
+            for j in range(col):
+                if grid[i][j] == '1' and (i, j) not in visited:
+                    res += 1
+                    dfs(i, j)
+        return res
+
 
 
 s = Solution()

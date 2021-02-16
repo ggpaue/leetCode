@@ -42,6 +42,45 @@
 
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
+        '''
+
+        :param s:
+        :param p:
+        :return:
+
+        memo = dict()
+        def dp(i, j):
+            if (i, j) in memo:
+                return memo[(i, j)]
+
+            if j == len(p):
+                return i == len(s)
+
+            if i == len(s):
+                if (len(p)-j) % 2 == 1:
+                    return False
+                while j < len(p)-1:
+                    if p[j+1] != '*':
+                        return False
+                    j += 2
+                return True
+
+            ans = False
+            if s[i] == p[j] or p[j]=='.':
+                if j < len(p)-1 and p[j+1] == '*':
+                    ans = dp(i, j+2) or dp(i+1, j)
+                else:
+                    ans = dp(i+1, j+1)
+            else:
+                if j < len(p)-1 and p[j+1] == '*':
+                    ans = dp(i, j+2)
+                else:
+                    ans = False
+            memo[(i,j)] = ans
+            return ans
+
+        return dp(0, 0)
+        '''
         memo = dict()
         def dp(i, j):
             if (i, j) in memo:

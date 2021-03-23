@@ -23,7 +23,6 @@ class Solution:
             ans[-1-i] *= right
             left *= nums[i]
             right *= nums[-i-1]
-        print(ans)
         return ans
 
 s = Solution()

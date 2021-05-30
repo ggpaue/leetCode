@@ -32,7 +32,7 @@ class Solution:
         dale_diagnoals = [0] * (2*n-1)
 
         def could_place(row, col):
-            return not (cols[col] + hill_diagonals(row-col) + dale_diagnoals[row+col])
+            return not (cols[col] + hill_diagonals[row-col] + dale_diagnoals[row+col])
 
         def place_queen(row, col):
             queens.add((row, col))

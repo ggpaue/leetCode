@@ -34,7 +34,7 @@
 #Output: -1
 
 from typing import List
-import collections
+from collections import deque
 class Solution:
     def openLock(self, deadends: List[str], target: str) -> int:
         def plusone(s: str, p: int):
@@ -52,7 +52,7 @@ class Solution:
             return s
 
         dead = set(deadends)
-        queue = collections.deque([('0000', 0)], )
+        queue = deque([('0000', 0)], )
         seen = {'0000'}
 
         while queue:
@@ -73,3 +73,8 @@ class Solution:
                     seen.add(down)
                     queue.append((down, step+1))
         return -1
+
+s = Solution()
+deadends = ["0201","0101","0102","1212","2002"]
+target = "0202"
+s.openLock(deadends, target)
